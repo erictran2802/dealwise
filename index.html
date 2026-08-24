@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEALWISE — Find what fits. Then find the deal.</title>
+<meta name="description" content="Dealwise giúp bạn bắt đầu từ nhu cầu, tìm lựa chọn phù hợp và khám phá voucher, deal, ưu đãi đang có.">
+<meta name="theme-color" content="#111214">
+<style>
+:root{
+  --bg:#f4f4f2;--paper:#fff;--ink:#111214;--muted:#6e7074;--line:#d9d9d6;
+  --soft:#e9e9e6;--accent:#ff5a2f;--black:#080909;--green:#1f9d67;
+  --max:1280px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Helvetica Neue","Avenir Next","Segoe UI",Arial,sans-serif;line-height:1.45;letter-spacing:-.012em}
+a{text-decoration:none;color:inherit}
+button,input{font:inherit}
+.container{width:min(var(--max),calc(100% - 44px));margin:auto}
+header{position:sticky;top:0;z-index:50;background:rgba(244,244,242,.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{height:68px;display:flex;align-items:center;border-left:1px solid var(--line);border-right:1px solid var(--line);padding:0 20px}
+.logo{display:flex;align-items:center;gap:9px;font-size:20px;font-weight:800;letter-spacing:-.07em}
+.logo-mark{width:25px;height:25px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:9px;border-radius:3px}
+.nav-links{margin-left:auto;display:flex;gap:28px}
+.nav-links a{font-size:11px;color:#55575a}
+.nav-cta{margin-left:26px;padding-left:26px;border-left:1px solid var(--line)}
+.nav-cta a{display:inline-flex;background:var(--ink);color:#fff;padding:10px 14px;font-size:10px;font-weight:800}
+.ticker{height:30px;overflow:hidden;border-bottom:1px solid var(--line);background:#ececea}
+.ticker-track{height:100%;width:max-content;display:flex;align-items:center;animation:marquee 30s linear infinite}
+.ticker-item{font-size:9px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#666;padding-right:42px;white-space:nowrap}
+.ticker-item b{color:var(--accent)}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+.hero{border-left:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:1.15fr .85fr;min-height:650px}
+.hero-main{position:relative;padding:82px 50px 58px;overflow:hidden}
+.kicker{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.16em}
+.kicker i{width:27px;height:1px;background:var(--accent)}
+.hero-index{position:absolute;top:38px;right:38px;color:#999;font-size:10px;letter-spacing:.12em}
+h1{font-size:clamp(62px,8vw,112px);line-height:.84;letter-spacing:-.08em;font-weight:500;margin:30px 0 28px}
+h1 span{display:block}
+.accent{color:var(--accent);font-weight:700}
+.hero-copy{max-width:650px;color:var(--muted);font-size:16px}
+.searchbox{margin-top:32px;display:flex;max-width:670px;background:#fff;border:1px solid var(--ink);padding:7px}
+.searchbox input{flex:1;border:0;outline:0;padding:13px 12px;background:transparent;font-size:14px;min-width:0}
+.searchbox button{border:0;background:var(--ink);color:#fff;padding:0 18px;font-size:10px;font-weight:800;letter-spacing:.05em;cursor:pointer}
+.hero-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+.quick{border:1px solid var(--line);background:#fff;padding:7px 10px;font-size:9px;color:#555;cursor:pointer}
+.quick:hover{border-color:var(--accent);color:var(--accent)}
+.hero-grid{position:absolute;right:-120px;bottom:-145px;width:430px;height:430px;border:1px solid rgba(17,18,20,.08);transform:rotate(45deg);pointer-events:none}
+.hero-grid:before,.hero-grid:after{content:"";position:absolute;border:1px solid rgba(17,18,20,.06)}
+.hero-grid:before{inset:70px}.hero-grid:after{inset:140px}
+.hero-side{position:relative;border-left:1px solid var(--line);overflow:hidden;display:flex;align-items:flex-end}
+.hero-side img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(25%);transition:.7s}
+.hero:hover .hero-side img{transform:scale(1.04);filter:grayscale(0)}
+.hero-side:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.42))}
+.hero-label{position:absolute;top:22px;left:22px;z-index:2;color:#fff;font-size:9px;font-weight:800;letter-spacing:.13em}
+.hero-note{position:relative;z-index:3;margin:0 18px 18px;background:rgba(255,255,255,.95);padding:18px;border:1px solid rgba(17,18,20,.1)}
+.hero-note small{color:var(--accent);font-size:9px;font-weight:800;letter-spacing:.12em}
+.hero-note h3{font-size:25px;line-height:1.02;letter-spacing:-.05em;font-weight:500;margin:8px 0}
+.hero-note p{font-size:11px;color:var(--muted);margin:0}
+
+section{border-bottom:1px solid var(--line)}
+.section{padding:76px 0}
+.section-top{display:grid;grid-template-columns:105px 1fr 330px;gap:24px;align-items:start;margin-bottom:34px}
+.section-no{font-size:10px;color:var(--accent);font-weight:800;letter-spacing:.13em}
+h2{font-size:50px;line-height:.93;letter-spacing:-.07em;font-weight:500;margin:0}
+.section-intro{font-size:12px;color:var(--muted);max-width:330px}
+
+.need-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--line)}
+.need-card{background:#fff;min-height:235px;padding:20px;border-right:1px solid var(--line);position:relative;overflow:hidden;cursor:pointer}
+.need-card:nth-child(4n){border-right:0}
+.need-card:before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:.3s}
+.need-card:hover:before{transform:scaleX(1)}
+.need-no{font-size:9px;color:#999}
+.need-icon{font-size:31px;margin-top:30px}
+.need-card h3{font-size:24px;letter-spacing:-.05em;font-weight:500;margin:10px 0 4px}
+.need-card p{font-size:10px;color:var(--muted);margin:0}
+.need-tags{margin-top:14px;display:flex;gap:6px;flex-wrap:wrap}
+.need-tags span{font-size:8px;border:1px solid var(--line);padding:5px 7px;background:#fafafa}
+
+.intent-bar{margin-top:24px;border:1px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:space-between;padding:16px 18px;gap:15px}
+.intent-bar strong{font-size:12px;font-weight:600}
+.intent-bar span{font-size:10px;color:var(--muted)}
+.intent-bar button{border:0;background:var(--accent);color:#fff;padding:10px 13px;font-size:9px;font-weight:800;cursor:pointer}
+
+.trend-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--line)}
+.trend{background:#fff;padding:19px;border-right:1px solid var(--line);min-height:130px}
+.trend:last-child{border-right:0}
+.trend small{color:var(--accent);font-size:8px;font-weight:800;letter-spacing:.12em}
+.trend h3{font-size:18px;line-height:1.05;font-weight:500;letter-spacing:-.04em;margin:12px 0}
+.trend a{font-size:9px;font-weight:800}
+
+.deal-header{display:flex;justify-content:space-between;align-items:end;margin-bottom:18px}
+.deal-status{font-size:9px;color:var(--green);font-weight:800;letter-spacing:.1em}
+.deal-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--line)}
+.deal-card{background:#fff;border-right:1px solid var(--line);min-height:370px;position:relative;display:flex;flex-direction:column}
+.deal-card:nth-child(3n){border-right:0}
+.deal-image{height:190px;background:#e5e5e2;position:relative;overflow:hidden}
+.deal-image img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.deal-card:hover .deal-image img{transform:scale(1.05)}
+.deal-badge{position:absolute;top:12px;left:12px;background:var(--ink);color:#fff;padding:6px 8px;font-size:8px;font-weight:800;letter-spacing:.08em;z-index:2}
+.deal-body{padding:18px;display:flex;flex-direction:column;flex:1}
+.deal-merchant{font-size:9px;color:var(--accent);font-weight:800;letter-spacing:.12em}
+.deal-card h3{font-size:22px;line-height:1.04;letter-spacing:-.045em;font-weight:500;margin:7px 0}
+.deal-card p{font-size:10px;color:var(--muted);margin:0}
+.deal-meta{display:flex;gap:15px;margin-top:13px;padding-top:12px;border-top:1px solid var(--line)}
+.deal-meta div{font-size:9px;color:#777}
+.deal-meta strong{display:block;color:var(--ink);font-size:12px;margin-top:2px}
+.deal-foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:15px}
+.deal-foot span{font-size:8px;color:#999}
+.get-deal{background:var(--accent);color:#fff;padding:10px 12px;font-size:9px;font-weight:800}
+.get-deal:hover{background:var(--ink)}
+
+.recommend{display:grid;grid-template-columns:1.2fr .8fr;border-top:1px solid var(--ink)}
+.rec-main{background:#fff;border-right:1px solid var(--line)}
+.rec-photo{height:310px;position:relative;overflow:hidden;background:#ddd}
+.rec-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(15%);transition:.6s}
+.rec-main:hover .rec-photo img{transform:scale(1.04);filter:grayscale(0)}
+.rec-photo .badge{position:absolute;top:16px;left:16px;background:var(--ink);color:#fff;padding:7px 9px;font-size:8px;font-weight:800;z-index:2}
+.rec-body{padding:24px}
+.rec-type{font-size:9px;color:var(--accent);font-weight:800;letter-spacing:.12em}
+.rec-title{font-size:34px;line-height:1;letter-spacing:-.055em;font-weight:500;margin:7px 0}
+.rec-copy{font-size:11px;color:var(--muted);max-width:600px}
+.fit-grid{display:grid;grid-template-columns:1fr 1fr;margin-top:20px;border-top:1px solid var(--line)}
+.fit{padding:13px 14px 0 0}
+.fit+.fit{border-left:1px solid var(--line);padding-left:14px}
+.fit small{font-size:8px;color:#999;text-transform:uppercase;letter-spacing:.08em}
+.fit strong{display:block;font-size:11px;margin-top:4px}
+.rec-footer{display:flex;justify-content:space-between;align-items:center;margin-top:20px}
+.rec-footer span{font-size:10px;font-weight:700}
+.rec-footer a{background:var(--accent);color:#fff;padding:11px 13px;font-size:9px;font-weight:800}
+.rec-side{display:grid;grid-template-rows:1fr 1fr}
+.side-rec{background:#fafafa;padding:20px;border-bottom:1px solid var(--line);position:relative}
+.side-rec:last-child{border-bottom:0}
+.side-rec h3{font-size:21px;line-height:1.05;font-weight:500;letter-spacing:-.045em;margin:8px 0}
+.side-rec p{font-size:10px;color:var(--muted);max-width:270px}
+.side-label{font-size:8px;color:var(--accent);font-weight:800;letter-spacing:.12em}
+.side-rec a{position:absolute;bottom:18px;left:20px;font-size:9px;font-weight:800}
+
+.dark{background:var(--black);color:#fff}
+.dark .section-intro{color:#999}
+.dark .section-no{color:#ff8668}
+.dark .deal-grid{border-color:#333}
+.dark .deal-card{background:#101111;border-color:#333}
+.dark .deal-card p,.dark .deal-meta div,.dark .deal-foot span{color:#999}
+.dark .deal-meta{border-color:#333}
+.dark .deal-merchant{color:#ff8668}
+.dark .deal-card h3,.dark .deal-meta strong{color:#fff}
+
+.disclosure{font-size:9px;color:#888;line-height:1.6;max-width:650px}
+footer{padding:30px 0 55px}
+.footer-row{display:flex;justify-content:space-between;gap:30px}
+.footer-brand{font-size:16px;font-weight:800;letter-spacing:-.06em}
+.footer-brand span{display:block;font-size:9px;font-weight:500;color:var(--muted);letter-spacing:.02em;margin-top:3px}
+
+.loading{padding:35px;text-align:center;color:#888;font-size:10px;border:1px solid var(--line);background:#fff}
+.error{padding:18px;border:1px solid #e3c8c0;background:#fff5f1;color:#8b3b24;font-size:10px}
+
+@media(max-width:950px){
+  .nav-links{display:none}.nav-cta{margin-left:auto}
+  .hero{grid-template-columns:1fr}.hero-side{min-height:420px;border-left:0;border-top:1px solid var(--line)}
+  .section-top{grid-template-columns:70px 1fr}.section-intro{grid-column:2}
+  .need-grid{grid-template-columns:1fr 1fr}.need-card:nth-child(2n){border-right:0}.need-card:nth-child(n+3){border-top:1px solid var(--line)}
+  .trend-grid{grid-template-columns:1fr 1fr}.trend:nth-child(2n){border-right:0}.trend:nth-child(n+3){border-top:1px solid var(--line)}
+  .deal-grid{grid-template-columns:1fr 1fr}.deal-card:nth-child(3n){border-right:1px solid var(--line)}.deal-card:nth-child(2n){border-right:0}.deal-card:nth-child(n+3){border-top:1px solid var(--line)}
+  .recommend{grid-template-columns:1fr}.rec-main{border-right:0;border-bottom:1px solid var(--line)}
+}
+@media(max-width:620px){
+  .container{width:calc(100% - 24px)}
+  .nav{padding:0 12px}.nav-cta{display:none}
+  .hero-main{padding:58px 20px 45px}.hero-side{min-height:360px}
+  h1{font-size:57px}.hero-copy{font-size:14px}
+  .searchbox button{padding:0 13px}
+  .section{padding:60px 0}.section-top{display:block}.section-no{margin-bottom:14px}.section-intro{margin-top:14px}
+  h2{font-size:39px}
+  .need-grid,.trend-grid,.deal-grid{grid-template-columns:1fr}
+  .need-card,.trend,.deal-card{border-right:0!important}.need-card+.need-card,.trend+.trend,.deal-card+.deal-card{border-top:1px solid var(--line)}
+  .fit-grid{grid-template-columns:1fr}.fit+.fit{border-left:0;border-top:1px solid var(--line);padding-left:0}
+  .footer-row{display:block}.disclosure{margin-top:20px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="nav">
+      <a class="logo" href="#"><span class="logo-mark">D</span>DEALWISE</a>
+      <nav class="nav-links">
+        <a href="#needs">Bạn cần gì?</a>
+        <a href="#recommend">Gợi ý</a>
+        <a href="#deals">Deal</a>
+        <a href="#how">Cách chọn</a>
+      </nav>
+      <div class="nav-cta"><a href="#deals">DEALS →</a></div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item"><b>●</b> Need first. Deal second.</div>
+    <div class="ticker-item">Voucher · Coupon · Cashback · Promotion</div>
+    <div class="ticker-item">Cập nhật ưu đãi từ ACCESSTRADE</div>
+    <div class="ticker-item"><b>●</b> Chọn đúng trước khi săn giá</div>
+    <div class="ticker-item"><b>●</b> Need first. Deal second.</div>
+    <div class="ticker-item">Voucher · Coupon · Cashback · Promotion</div>
+    <div class="ticker-item">Cập nhật ưu đãi từ ACCESSTRADE</div>
+    <div class="ticker-item"><b>●</b> Chọn đúng trước khi săn giá</div>
+  </div>
+</div>
+
+<main>
+<section>
+  <div class="container">
+    <div class="hero">
+      <div class="hero-main">
+        <div class="hero-index">01—05</div>
+        <div class="kicker"><i></i> NEED-BASED DEAL DISCOVERY / VIỆT NAM</div>
+        <h1><span>Chọn đúng.</span><span><span class="accent">Rồi săn deal.</span></span></h1>
+        <p class="hero-copy">Dealwise bắt đầu từ điều bạn thực sự cần — tìm lựa chọn phù hợp, hiểu vì sao nó hợp với bạn, rồi mới tìm voucher, ưu đãi và deal đang có.</p>
+        <div class="searchbox">
+          <input id="intentInput" type="search" placeholder="Ví dụ: laptop cho marketing, khách sạn Đà Nẵng..." aria-label="Tìm theo nhu cầu">
+          <button onclick="searchIntent()">TÌM →</button>
+        </div>
+        <div class="hero-links">
+          <button class="quick" onclick="setIntent('Laptop cho công việc')">Laptop cho công việc</button>
+          <button class="quick" onclick="setIntent('Khách sạn Đà Nẵng')">Khách sạn Đà Nẵng</button>
+          <button class="quick" onclick="setIntent('Giày chạy cho người mới')">Giày chạy cho người mới</button>
+          <button class="quick" onclick="setIntent('Máy lọc không khí phòng ngủ')">Máy lọc không khí</button>
+        </div>
+        <div class="hero-grid"></div>
+      </div>
+      <aside class="hero-side">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1400&q=88" alt="Shopping and deal discovery">
+        <div class="hero-label">DEALWISE / NEED → RECOMMENDATION → DEAL</div>
+        <div class="hero-note">
+          <small>OUR RULE</small>
+          <h3>Không phải deal nào cũng đáng mua.</h3>
+          <p>Một mức giảm giá chỉ có ý nghĩa khi sản phẩm hoặc dịch vụ thực sự phù hợp với nhu cầu của bạn.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="needs">
+  <div class="container section">
+    <div class="section-top">
+      <div class="section-no">01 / NHU CẦU</div>
+      <h2>Bạn đang tìm<br>thứ gì cho cuộc sống?</h2>
+      <p class="section-intro">Không bắt đầu bằng merchant. Không bắt đầu bằng voucher. Bắt đầu bằng việc bạn muốn giải quyết điều gì.</p>
+    </div>
+    <div class="need-grid">
+      <article class="need-card" onclick="filterDeals('work')">
+        <div class="need-no">01 / WORK</div><div class="need-icon">⌘</div><h3>Cho công việc</h3><p>Thiết bị, phần mềm và setup giúp làm việc tốt hơn.</p>
+        <div class="need-tags"><span>Laptop</span><span>Monitor</span><span>Office</span></div>
+      </article>
+      <article class="need-card" onclick="filterDeals('home')">
+        <div class="need-no">02 / HOME</div><div class="need-icon">⌂</div><h3>Cho ngôi nhà</h3><p>Đồ gia dụng và giải pháp làm nhà tiện hơn.</p>
+        <div class="need-tags"><span>Gia dụng</span><span>Smart home</span><span>Bếp</span></div>
+      </article>
+      <article class="need-card" onclick="filterDeals('fitness')">
+        <div class="need-no">03 / FITNESS</div><div class="need-icon">↗</div><h3>Cho sức khỏe</h3><p>Gear, dịch vụ và sản phẩm cho tập luyện hằng ngày.</p>
+        <div class="need-tags"><span>Running</span><span>Gym</span><span>Recovery</span></div>
+      </article>
+      <article class="need-card" onclick="filterDeals('travel')">
+        <div class="need-no">04 / TRAVEL</div><div class="need-icon">✈</div><h3>Cho chuyến đi</h3><p>Đi lại, lưu trú và những thứ giúp chuyến đi nhẹ nhàng hơn.</p>
+        <div class="need-tags"><span>Hotel</span><span>Flight</span><span>Luggage</span></div>
+      </article>
+      <article class="need-card" onclick="filterDeals('beauty')">
+        <div class="need-no">05 / BEAUTY</div><div class="need-icon">✦</div><h3>Cho bản thân</h3><p>Beauty, skincare, fashion và personal care.</p>
+        <div class="need-tags"><span>Skincare</span><span>Beauty</span><span>Fashion</span></div>
+      </article>
+      <article class="need-card" onclick="filterDeals('family')">
+        <div class="need-no">06 / FAMILY</div><div class="need-icon">♡</div><h3>Cho gia đình</h3><p>Mẹ & bé, kids và những lựa chọn cho cả nhà.</p>
+        <div class="need-tags"><span>Baby</span><span>Kids</span><span>Family</span></div>
+      </article>
+      <article class="need-card" onclick="filterDeals('food')">
+        <div class="need-no">07 / FOOD</div><div class="need-icon">◌</div><h3>Cho trải nghiệm</h3><p>Ăn uống, coffee, vui chơi và những trải nghiệm đáng tiền.</p>
+        <div class="need-tags"><span>Food</span><span>Coffee</span><span>Fun</span></div>
+      </article>
+      <article class="need-card" onclick="filterDeals('finance')">
+        <div class="need-no">08 / FINANCE</div><div class="need-icon">₫</div><h3>Cho tài chính</h3><p>Banking, card, insurance và các dịch vụ tài chính.</p>
+        <div class="need-tags"><span>Bank</span><span>Card</span><span>Finance</span></div>
+      </article>
+    </div>
+    <div class="intent-bar">
+      <div><strong id="intentLabel">Chưa biết bắt đầu từ đâu?</strong><span> — Hãy mô tả nhu cầu, Dealwise sẽ đưa bạn tới nhóm deal phù hợp.</span></div>
+      <button onclick="document.getElementById('intentInput').focus()">TÌM THEO NHU CẦU →</button>
+    </div>
+  </div>
+</section>
+
+<section id="trending">
+  <div class="container section">
+    <div class="section-top">
+      <div class="section-no">02 / SEARCH INTENT</div>
+      <h2>Những điều người ta<br>đang muốn giải quyết.</h2>
+      <p class="section-intro">Đây là lớp SEO quan trọng: từ nhu cầu cụ thể, mình xây content và landing pages có decision value.</p>
+    </div>
+    <div class="trend-grid">
+      <article class="trend"><small>WORK</small><h3>Laptop cho marketing dưới 25 triệu</h3><a href="#recommend">XEM GỢI Ý →</a></article>
+      <article class="trend"><small>TRAVEL</small><h3>Khách sạn Đà Nẵng giá tốt</h3><a href="#deals">XEM DEAL →</a></article>
+      <article class="trend"><small>FITNESS</small><h3>Giày chạy cho người mới</h3><a href="#recommend">XEM GỢI Ý →</a></article>
+      <article class="trend"><small>HOME</small><h3>Máy lọc không khí cho phòng ngủ</h3><a href="#recommend">XEM GỢI Ý →</a></article>
+    </div>
+  </div>
+</section>
+
+<section id="recommend">
+  <div class="container section">
+    <div class="section-top">
+      <div class="section-no">03 / GỢI Ý</div>
+      <h2>Không tìm cái<br>“tốt nhất”.</h2>
+      <p class="section-intro">Tìm cái phù hợp nhất với hoàn cảnh. Đây là nơi Dealwise tạo giá trị trước khi affiliate click xảy ra.</p>
+    </div>
+    <div class="recommend">
+      <article class="rec-main">
+        <div class="rec-photo">
+          <span class="badge">BEST FIT / WORK</span>
+          <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1400&q=88" alt="Laptop for work">
+        </div>
+        <div class="rec-body">
+          <div class="rec-type">WORK / LAPTOP · MARKETING · OFFICE</div>
+          <div class="rec-title">Laptop cho người làm marketing</div>
+          <p class="rec-copy">Ưu tiên màn hình, pin, trọng lượng và khả năng chạy nhiều tab/browser, presentation, Canva và công cụ marketing hằng ngày — thay vì chỉ nhìn benchmark.</p>
+          <div class="fit-grid">
+            <div class="fit"><small>Phù hợp nếu</small><strong>Làm việc hybrid, di chuyển nhiều</strong></div>
+            <div class="fit"><small>Không phù hợp nếu</small><strong>Cần gaming hoặc 3D nặng</strong></div>
+          </div>
+          <div class="rec-footer"><span>Decision guide →</span><a href="#deals">TÌM DEAL PHÙ HỢP ↗</a></div>
+        </div>
+      </article>
+      <div class="rec-side">
+        <article class="side-rec"><div class="side-label">TRAVEL</div><h3>Khách sạn cho chuyến đi cuối tuần</h3><p>Ưu tiên vị trí, cancellation, breakfast và giá thực trả — không chỉ nhìn rating.</p><a href="#deals">XEM DEAL →</a></article>
+        <article class="side-rec"><div class="side-label">FITNESS</div><h3>Giày chạy cho người mới</h3><p>Ưu tiên comfort, độ ổn định và mục tiêu chạy trước khi nhìn thương hiệu.</p><a href="#deals">XEM DEAL →</a></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="deals" class="dark">
+  <div class="container section">
+    <div class="section-top">
+      <div class="section-no">04 / DEAL</div>
+      <h2>Chọn xong.<br>Rồi hãy săn giá.</h2>
+      <p class="section-intro">Các box bên dưới được thiết kế để nhận dữ liệu thật từ ACCESSTRADE: hình ảnh, merchant, nội dung ưu đãi, thời gian và affiliate link.</p>
+    </div>
+    <div class="deal-header">
+      <div class="deal-status">● LIVE DEAL FEED / ACCESSTRADE</div>
+      <div style="font-size:9px;color:#777" id="dealCount">Demo feed — connect API to load live deals</div>
+    </div>
+    <div id="dealGrid" class="deal-grid">
+      <article class="deal-card">
+        <div class="deal-image"><span class="deal-badge">DEMO / LIVE-READY</span><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=82" alt="Shopping"></div>
+        <div class="deal-body"><div class="deal-merchant">SHOPEE</div><h3>Voucher / promotion đang hoạt động</h3><p>Card này sẽ được thay bằng dữ liệu thật từ ACCESSTRADE API khi chạy qua backend.</p><div class="deal-meta"><div>TYPE<strong>Voucher</strong></div><div>STATUS<strong>Active</strong></div></div><div class="deal-foot"><span>Affiliate-ready</span><a class="get-deal" href="#" onclick="alert('Connect ACCESSTRADE API để dùng affiliate link thật.');return false">GET DEAL →</a></div></div>
+      </article>
+      <article class="deal-card">
+        <div class="deal-image"><span class="deal-badge">DEMO / LIVE-READY</span><img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1000&q=82" alt="Lifestyle shopping"></div>
+        <div class="deal-body"><div class="deal-merchant">LIFESTYLE</div><h3>Ưu đãi phù hợp theo nhu cầu</h3><p>Merchant, image, offer text, expiry và affiliate link sẽ được map tự động.</p><div class="deal-meta"><div>TYPE<strong>Promotion</strong></div><div>STATUS<strong>Active</strong></div></div><div class="deal-foot"><span>Affiliate-ready</span><a class="get-deal" href="#" onclick="alert('Connect ACCESSTRADE API để dùng affiliate link thật.');return false">GET DEAL →</a></div></div>
+      </article>
+      <article class="deal-card">
+        <div class="deal-image"><span class="deal-badge">DEMO / LIVE-READY</span><img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1000&q=82" alt="Coupon"></div>
+        <div class="deal-body"><div class="deal-merchant">MULTI-MERCHANT</div><h3>Coupon & deal đáng chú ý</h3><p>Ưu tiên những deal có relevance, thay vì biến homepage thành kho voucher vô tận.</p><div class="deal-meta"><div>TYPE<strong>Coupon</strong></div><div>STATUS<strong>Active</strong></div></div><div class="deal-foot"><span>Affiliate-ready</span><a class="get-deal" href="#" onclick="alert('Connect ACCESSTRADE API để dùng affiliate link thật.');return false">GET DEAL →</a></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="container section">
+    <div class="section-top">
+      <div class="section-no">05 / CÁCH CHỌN</div>
+      <h2>Dealwise không chỉ<br>đưa bạn một cái link.</h2>
+      <p class="section-intro">Mỗi recommendation nên trả lời được: mua cho ai, dùng trong trường hợp nào và đánh đổi điều gì.</p>
+    </div>
+    <div class="trend-grid">
+      <article class="trend"><small>01 / NEED</small><h3>Bắt đầu từ hoàn cảnh sử dụng.</h3><a href="#needs">CHỌN NHU CẦU →</a></article>
+      <article class="trend"><small>02 / FIT</small><h3>Giải thích vì sao lựa chọn phù hợp.</h3><a href="#recommend">XEM GỢI Ý →</a></article>
+      <article class="trend"><small>03 / DEAL</small><h3>Tìm ưu đãi đang thực sự có giá trị.</h3><a href="#deals">SĂN DEAL →</a></article>
+      <article class="trend"><small>04 / DISCLOSURE</small><h3>Affiliate nhưng minh bạch.</h3><a href="#footer">ĐỌC DISCLOSURE →</a></article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="footer">
+  <div class="container">
+    <div class="footer-row">
+      <div><div class="footer-brand">DEALWISE<span>Find what fits. Then find the deal.</span></div></div>
+      <div class="disclosure">Một số liên kết trên Dealwise có thể là affiliate link. Nếu bạn mua hàng hoặc thực hiện hành động đủ điều kiện qua liên kết đó, Dealwise có thể nhận hoa hồng; giá bạn trả không thay đổi. Deal và voucher có thể thay đổi theo thời gian, điều kiện của merchant và chiến dịch.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const demoDeals = [];
+function setIntent(v){
+  document.getElementById('intentInput').value=v;
+  document.getElementById('intentLabel').textContent='Đang tìm: '+v;
+  document.getElementById('intentInput').focus();
+}
+function searchIntent(){
+  const v=document.getElementById('intentInput').value.trim();
+  if(!v)return;
+  document.getElementById('intentLabel').textContent='Đang tìm: '+v;
+  document.getElementById('deals').scrollIntoView({behavior:'smooth'});
+}
+function filterDeals(type){
+  const labels={work:'Cho công việc',home:'Cho ngôi nhà',fitness:'Cho sức khỏe',travel:'Cho chuyến đi',beauty:'Cho bản thân',family:'Cho gia đình',food:'Cho trải nghiệm',finance:'Cho tài chính'};
+  document.getElementById('intentLabel').textContent='Đang xem deal: '+(labels[type]||type);
+  document.getElementById('deals').scrollIntoView({behavior:'smooth'});
+}
+function esc(s){
+  return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+}
+function renderDeals(deals){
+  const grid=document.getElementById('dealGrid');
+  if(!Array.isArray(deals)||!deals.length)return;
+  grid.innerHTML=deals.slice(0,12).map(d=>{
+    const title=esc(d.name||d.content||'Ưu đãi đang hoạt động');
+    const merchant=esc(d.merchant_name||d.merchant||'MERCHANT');
+    const image=d.image||'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=82';
+    const href=d.aff_link||d.prod_link||d.link||'#';
+    const discount=d.discount_percentage?`${esc(d.discount_percentage)}%`:d.discount_value?esc(d.discount_value):'Ưu đãi';
+    const end=d.end_time?new Date(d.end_time).toLocaleDateString('vi-VN'):'Đang hoạt động';
+    return `<article class="deal-card">
+      <div class="deal-image"><span class="deal-badge">LIVE / AT</span><img src="${esc(image)}" alt="${title}" loading="lazy"></div>
+      <div class="deal-body">
+        <div class="deal-merchant">${merchant}</div>
+        <h3>${title}</h3>
+        <p>${esc(d.content||'Ưu đãi được cập nhật từ nguồn affiliate.')}</p>
+        <div class="deal-meta"><div>DEAL<strong>${discount}</strong></div><div>END<strong>${esc(end)}</strong></div></div>
+        <div class="deal-foot"><span>ACCESSTRADE</span><a class="get-deal" href="${esc(href)}" target="_blank" rel="sponsored nofollow noopener">GET DEAL →</a></div>
+      </div>
+    </article>`;
+  }).join('');
+  document.getElementById('dealCount').textContent=`${Math.min(deals.length,12)} live deals loaded`;
+}
+async function loadLiveDeals(){
+  try{
+    const r=await fetch('/api/deals?limit=12');
+    if(!r.ok)throw new Error('API unavailable');
+    const data=await r.json();
+    renderDeals(data.data||data);
+  }catch(e){
+    console.info('Demo mode: live ACCESSTRADE feed is not connected yet.');
+  }
+}
+loadLiveDeals();
+</script>
+</body>
+</html>
