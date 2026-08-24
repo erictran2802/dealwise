@@ -76,7 +76,8 @@ h2{font-size:50px;line-height:.93;letter-spacing:-.07em;font-weight:500;margin:0
 .need-card:before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:var(--cat,var(--accent));transform:scaleX(0);transform-origin:left;transition:.3s}
 .need-card:hover:before{transform:scaleX(1)}
 .need-no{font-size:9px;color:#999}
-.need-icon{font-size:31px;margin-top:30px;color:var(--cat,var(--ink));transition:.3s}
+.need-icon-wrap{width:52px;height:52px;border-radius:10px;background:color-mix(in srgb, var(--cat,var(--ink)) 12%, #fff);display:flex;align-items:center;justify-content:center;margin-top:26px}
+.need-icon{font-size:26px;color:var(--cat,var(--ink));transition:.3s}
 .need-card h3{font-size:24px;letter-spacing:-.05em;font-weight:500;margin:10px 0 4px}
 .need-card p{font-size:10px;color:var(--muted);margin:0}
 .need-tags{margin-top:14px;display:flex;gap:6px;flex-wrap:wrap}
@@ -248,7 +249,7 @@ footer{padding:30px 0 55px}
         <div class="hero-grid"></div>
       </div>
       <aside class="hero-side">
-        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1400&q=88" alt="Shopping and deal discovery">
+        <img src="https://images.unsplash.com/photo-1713947506242-8fcae733d158?auto=format&fit=crop&w=1400&q=88" alt="Shopping and deal discovery">
         <div class="hero-label">DEALWISE / NEED → RECOMMENDATION → DEAL</div>
         <div class="hero-note">
           <small>OUR RULE</small>
@@ -269,35 +270,35 @@ footer{padding:30px 0 55px}
     </div>
     <div class="need-grid">
       <article class="need-card c-work" onclick="filterDeals('work')">
-        <div class="need-no">01 / WORK</div><div class="need-icon">⌘</div><h3>Cho công việc</h3><p>Thiết bị, phần mềm và setup giúp làm việc tốt hơn.</p>
+        <div class="need-no">01 / WORK</div><div class="need-icon-wrap"><div class="need-icon">⌘</div></div><h3>Cho công việc</h3><p>Thiết bị, phần mềm và setup giúp làm việc tốt hơn.</p>
         <div class="need-tags"><span>Laptop</span><span>Monitor</span><span>Office</span></div>
       </article>
       <article class="need-card c-home" onclick="filterDeals('home')">
-        <div class="need-no">02 / HOME</div><div class="need-icon">⌂</div><h3>Cho ngôi nhà</h3><p>Đồ gia dụng và giải pháp làm nhà tiện hơn.</p>
+        <div class="need-no">02 / HOME</div><div class="need-icon-wrap"><div class="need-icon">⌂</div></div><h3>Cho ngôi nhà</h3><p>Đồ gia dụng và giải pháp làm nhà tiện hơn.</p>
         <div class="need-tags"><span>Gia dụng</span><span>Smart home</span><span>Bếp</span></div>
       </article>
       <article class="need-card c-fitness" onclick="filterDeals('fitness')">
-        <div class="need-no">03 / FITNESS</div><div class="need-icon">↗</div><h3>Cho sức khỏe</h3><p>Gear, dịch vụ và sản phẩm cho tập luyện hằng ngày.</p>
+        <div class="need-no">03 / FITNESS</div><div class="need-icon-wrap"><div class="need-icon">↗</div></div><h3>Cho sức khỏe</h3><p>Gear, dịch vụ và sản phẩm cho tập luyện hằng ngày.</p>
         <div class="need-tags"><span>Running</span><span>Gym</span><span>Recovery</span></div>
       </article>
       <article class="need-card c-travel" onclick="filterDeals('travel')">
-        <div class="need-no">04 / TRAVEL</div><div class="need-icon">✈</div><h3>Cho chuyến đi</h3><p>Đi lại, lưu trú và những thứ giúp chuyến đi nhẹ nhàng hơn.</p>
+        <div class="need-no">04 / TRAVEL</div><div class="need-icon-wrap"><div class="need-icon">✈</div></div><h3>Cho chuyến đi</h3><p>Đi lại, lưu trú và những thứ giúp chuyến đi nhẹ nhàng hơn.</p>
         <div class="need-tags"><span>Hotel</span><span>Flight</span><span>Luggage</span></div>
       </article>
       <article class="need-card c-beauty" onclick="filterDeals('beauty')">
-        <div class="need-no">05 / BEAUTY</div><div class="need-icon">✦</div><h3>Cho bản thân</h3><p>Beauty, skincare, fashion và personal care.</p>
+        <div class="need-no">05 / BEAUTY</div><div class="need-icon-wrap"><div class="need-icon">✦</div></div><h3>Cho bản thân</h3><p>Beauty, skincare, fashion và personal care.</p>
         <div class="need-tags"><span>Skincare</span><span>Beauty</span><span>Fashion</span></div>
       </article>
       <article class="need-card c-family" onclick="filterDeals('family')">
-        <div class="need-no">06 / FAMILY</div><div class="need-icon">♡</div><h3>Cho gia đình</h3><p>Mẹ & bé, kids và những lựa chọn cho cả nhà.</p>
+        <div class="need-no">06 / FAMILY</div><div class="need-icon-wrap"><div class="need-icon">♡</div></div><h3>Cho gia đình</h3><p>Mẹ & bé, kids và những lựa chọn cho cả nhà.</p>
         <div class="need-tags"><span>Baby</span><span>Kids</span><span>Family</span></div>
       </article>
       <article class="need-card c-food" onclick="filterDeals('food')">
-        <div class="need-no">07 / FOOD</div><div class="need-icon">◌</div><h3>Cho trải nghiệm</h3><p>Ăn uống, coffee, vui chơi và những trải nghiệm đáng tiền.</p>
+        <div class="need-no">07 / FOOD</div><div class="need-icon-wrap"><div class="need-icon">◌</div></div><h3>Cho trải nghiệm</h3><p>Ăn uống, coffee, vui chơi và những trải nghiệm đáng tiền.</p>
         <div class="need-tags"><span>Food</span><span>Coffee</span><span>Fun</span></div>
       </article>
       <article class="need-card c-finance" onclick="filterDeals('finance')">
-        <div class="need-no">08 / FINANCE</div><div class="need-icon">₫</div><h3>Cho tài chính</h3><p>Banking, card, insurance và các dịch vụ tài chính.</p>
+        <div class="need-no">08 / FINANCE</div><div class="need-icon-wrap"><div class="need-icon">₫</div></div><h3>Cho tài chính</h3><p>Banking, card, insurance và các dịch vụ tài chính.</p>
         <div class="need-tags"><span>Bank</span><span>Card</span><span>Finance</span></div>
       </article>
     </div>
@@ -335,7 +336,7 @@ footer{padding:30px 0 55px}
       <article class="rec-main">
         <div class="rec-photo">
           <span class="badge">BEST FIT / WORK</span>
-          <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1400&q=88" alt="Laptop for work">
+          <img src="https://images.unsplash.com/photo-1682145713985-f7faf7306745?auto=format&fit=crop&w=1400&q=88" alt="Laptop for work">
         </div>
         <div class="rec-body">
           <div class="rec-type">WORK / LAPTOP · MARKETING · OFFICE</div>
