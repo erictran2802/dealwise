@@ -114,9 +114,13 @@ h2{font-size:50px;line-height:.93;letter-spacing:-.07em;font-weight:500;margin:0
 .deal-badge{position:absolute;top:12px;left:12px;background:var(--ink);color:#fff;padding:6px 8px;font-size:8px;font-weight:800;letter-spacing:.08em;z-index:2}
 .deal-body{padding:18px;display:flex;flex-direction:column;flex:1;border-top:3px solid var(--m,var(--accent))}
 .deal-merchant{font-size:9px;color:var(--m,var(--accent));font-weight:800;letter-spacing:.12em}
-.deal-card.m-shopee{--m:#ee4d2d}
-.deal-card.m-lifestyle{--m:#1690a8}
-.deal-card.m-multi{--m:#7a53c7}
+.deal-card.m-tiktok{--m:#fe2c55}
+.deal-card.m-cellphones{--m:#e2231a}
+.deal-card.m-aeon{--m:#c8006e}
+.deal-card.m-highlands{--m:#8a3324}
+.deal-card.m-traveloka{--m:#1a7fc4}
+.deal-card.m-vna{--m:#0b3d91}
+.deal-card.m-tiki{--m:#1a94ff}
 .dark .deal-body{border-top-color:var(--m,#ff8668)}
 .deal-card h3{font-size:22px;line-height:1.04;letter-spacing:-.045em;font-weight:500;margin:7px 0}
 .deal-card p{font-size:10px;color:var(--muted);margin:0}
@@ -362,24 +366,40 @@ footer{padding:30px 0 55px}
     <div class="section-top">
       <div class="section-no">04 / DEAL</div>
       <h2>Chọn xong.<br>Rồi hãy săn giá.</h2>
-      <p class="section-intro">Các box bên dưới được thiết kế để nhận dữ liệu thật từ ACCESSTRADE: hình ảnh, merchant, nội dung ưu đãi, thời gian và affiliate link.</p>
+      <p class="section-intro">Ưu đãi thật từ các đối tác ACCESSTRADE — chọn lọc theo nhu cầu thường gặp, không phải kho voucher liệt kê cho có.</p>
     </div>
     <div class="deal-header">
-      <div class="deal-status">● LIVE DEAL FEED / ACCESSTRADE</div>
-      <div style="font-size:9px;color:#777" id="dealCount">Demo feed — connect API to load live deals</div>
+      <div class="deal-status">● ĐANG CHẠY / ACCESSTRADE</div>
+      <div style="font-size:9px;color:#777" id="dealCount">7 ưu đãi đang hoạt động</div>
     </div>
     <div id="dealGrid" class="deal-grid">
-      <article class="deal-card m-shopee">
-        <div class="deal-image"><span class="deal-badge">DEMO / LIVE-READY</span><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=82" alt="Shopping"></div>
-        <div class="deal-body"><div class="deal-merchant">SHOPEE</div><h3>Voucher / promotion đang hoạt động</h3><p>Card này sẽ được thay bằng dữ liệu thật từ ACCESSTRADE API khi chạy qua backend.</p><div class="deal-meta"><div>TYPE<strong>Voucher</strong></div><div>STATUS<strong>Active</strong></div></div><div class="deal-foot"><span>Affiliate-ready</span><a class="get-deal" href="#" onclick="alert('Connect ACCESSTRADE API để dùng affiliate link thật.');return false">GET DEAL →</a></div></div>
+      <article class="deal-card m-tiktok">
+        <div class="deal-image"><span class="deal-badge">MUA SẮM</span><img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=1000&q=82" alt="TikTok Shop"></div>
+        <div class="deal-body"><div class="deal-merchant">TIKTOK SHOP</div><h3>Săn deal giá sốc mỗi ngày</h3><p>Voucher và ưu đãi cập nhật liên tục từ hàng ngàn shop, đủ ngành hàng để chọn.</p><div class="deal-meta"><div>LOẠI<strong>Voucher</strong></div><div>TRẠNG THÁI<strong>Đang chạy</strong></div></div><div class="deal-foot"><span>Qua ACCESSTRADE</span><a class="get-deal" href="https://shorten.asia/npU3yZnJ" target="_blank" rel="sponsored nofollow noopener">GET DEAL →</a></div></div>
       </article>
-      <article class="deal-card m-lifestyle">
-        <div class="deal-image"><span class="deal-badge">DEMO / LIVE-READY</span><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=82" alt="Lifestyle shopping"></div>
-        <div class="deal-body"><div class="deal-merchant">LIFESTYLE</div><h3>Ưu đãi phù hợp theo nhu cầu</h3><p>Merchant, image, offer text, expiry và affiliate link sẽ được map tự động.</p><div class="deal-meta"><div>TYPE<strong>Promotion</strong></div><div>STATUS<strong>Active</strong></div></div><div class="deal-foot"><span>Affiliate-ready</span><a class="get-deal" href="#" onclick="alert('Connect ACCESSTRADE API để dùng affiliate link thật.');return false">GET DEAL →</a></div></div>
+      <article class="deal-card m-cellphones">
+        <div class="deal-image"><span class="deal-badge">CÔNG NGHỆ</span><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=82" alt="Điện thoại, laptop"></div>
+        <div class="deal-body"><div class="deal-merchant">CELLPHONES</div><h3>Ưu đãi điện thoại, laptop chính hãng</h3><p>Giá tốt, bảo hành chính hãng, giao nhanh — hợp cho ai đang cần nâng cấp thiết bị.</p><div class="deal-meta"><div>LOẠI<strong>Giảm giá</strong></div><div>TRẠNG THÁI<strong>Đang chạy</strong></div></div><div class="deal-foot"><span>Qua ACCESSTRADE</span><a class="get-deal" href="https://shorten.asia/eJKvrTVu" target="_blank" rel="sponsored nofollow noopener">GET DEAL →</a></div></div>
       </article>
-      <article class="deal-card m-multi">
-        <div class="deal-image"><span class="deal-badge">DEMO / LIVE-READY</span><img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?auto=format&fit=crop&w=1000&q=82" alt="Coupon"></div>
-        <div class="deal-body"><div class="deal-merchant">MULTI-MERCHANT</div><h3>Coupon & deal đáng chú ý</h3><p>Ưu tiên những deal có relevance, thay vì biến homepage thành kho voucher vô tận.</p><div class="deal-meta"><div>TYPE<strong>Coupon</strong></div><div>STATUS<strong>Active</strong></div></div><div class="deal-foot"><span>Affiliate-ready</span><a class="get-deal" href="#" onclick="alert('Connect ACCESSTRADE API để dùng affiliate link thật.');return false">GET DEAL →</a></div></div>
+      <article class="deal-card m-aeon">
+        <div class="deal-image"><span class="deal-badge">SIÊU THỊ</span><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1000&q=82" alt="Siêu thị AEON"></div>
+        <div class="deal-body"><div class="deal-merchant">AEON ESHOP</div><h3>Mua sắm siêu thị online tiện lợi</h3><p>Thực phẩm, đồ gia dụng, tiêu dùng hàng ngày — đặt online, giao tận nhà.</p><div class="deal-meta"><div>LOẠI<strong>Giảm giá</strong></div><div>TRẠNG THÁI<strong>Đang chạy</strong></div></div><div class="deal-foot"><span>Qua ACCESSTRADE</span><a class="get-deal" href="https://shorten.asia/eZYAB7yp" target="_blank" rel="sponsored nofollow noopener">GET DEAL →</a></div></div>
+      </article>
+      <article class="deal-card m-highlands">
+        <div class="deal-image"><span class="deal-badge">F&amp;B</span><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=82" alt="Cà phê Highlands"></div>
+        <div class="deal-body"><div class="deal-merchant">HIGHLANDS COFFEE</div><h3>Ưu đãi đồ uống mỗi ngày</h3><p>Đổi ưu đãi Highlands ngay trên Zalo Mini App — nhanh gọn, không cần tải thêm app.</p><div class="deal-meta"><div>LOẠI<strong>Ưu đãi</strong></div><div>TRẠNG THÁI<strong>Đang chạy</strong></div></div><div class="deal-foot"><span>Qua ACCESSTRADE</span><a class="get-deal" href="https://shorten.asia/hsusy2QH" target="_blank" rel="sponsored nofollow noopener">GET DEAL →</a></div></div>
+      </article>
+      <article class="deal-card m-traveloka">
+        <div class="deal-image"><span class="deal-badge">DU LỊCH</span><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=82" alt="Đặt khách sạn Traveloka"></div>
+        <div class="deal-body"><div class="deal-merchant">TRAVELOKA</div><h3>Đặt khách sạn, vé, combo du lịch</h3><p>Tỷ lệ duyệt đơn cao, nhiều lựa chọn — phù hợp khi đang lên kế hoạch cho chuyến đi.</p><div class="deal-meta"><div>LOẠI<strong>Ưu đãi</strong></div><div>TRẠNG THÁI<strong>Đang chạy</strong></div></div><div class="deal-foot"><span>Qua ACCESSTRADE</span><a class="get-deal" href="https://shorten.asia/5dYkQgbZ" target="_blank" rel="sponsored nofollow noopener">GET DEAL →</a></div></div>
+      </article>
+      <article class="deal-card m-vna">
+        <div class="deal-image"><span class="deal-badge">VÉ MÁY BAY</span><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1000&q=82" alt="Vé máy bay Vietnam Airlines"></div>
+        <div class="deal-body"><div class="deal-merchant">VIETNAM AIRLINES</div><h3>Vé máy bay nội địa &amp; quốc tế</h3><p>Đặt vé trực tiếp trên trang chính hãng, ưu đãi theo mùa cập nhật thường xuyên.</p><div class="deal-meta"><div>LOẠI<strong>Ưu đãi</strong></div><div>TRẠNG THÁI<strong>Đang chạy</strong></div></div><div class="deal-foot"><span>Qua ACCESSTRADE</span><a class="get-deal" href="https://shorten.asia/Aa9rVKn4" target="_blank" rel="sponsored nofollow noopener">GET DEAL →</a></div></div>
+      </article>
+      <article class="deal-card m-tiki">
+        <div class="deal-image"><span class="deal-badge">THƯƠNG MẠI ĐIỆN TỬ</span><img src="https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?auto=format&fit=crop&w=1000&q=82" alt="Mua sắm online Tiki"></div>
+        <div class="deal-body"><div class="deal-merchant">TIKI</div><h3>Hàng chuẩn, giao nhanh, giá tốt</h3><p>Đa dạng ngành hàng, tỷ lệ duyệt đơn cao — lựa chọn quen thuộc cho mua sắm online.</p><div class="deal-meta"><div>LOẠI<strong>Giảm giá</strong></div><div>TRẠNG THÁI<strong>Đang chạy</strong></div></div><div class="deal-foot"><span>Qua ACCESSTRADE</span><a class="get-deal" href="https://shorten.asia/g4PsYmbP" target="_blank" rel="sponsored nofollow noopener">GET DEAL →</a></div></div>
       </article>
     </div>
   </div>
